@@ -1,0 +1,97 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { models, getCategory, getModelsByCategory } from '../../data/catalog';
+import { site } from '../../data/settings';
+
+export function getStaticPaths() {
+  return models.map((m) => ({
+    params: { category: m.category, slug: m.slug },
+    props: { model: m },
+  }));
+}
+
+const { model } = Astro.props;
+const cat = getCategory(model.category);
+const related = getModelsByCategory(model.category)
+  .filter((m) => m.slug !== model.slug)
+  .slice(0, 3);
+const price = model.price > 0 ? `${model.price.toLocaleString('ru-RU')} ₽` : 'Цена по запросу';
+const images = model.images;
+---
+
+<Base title={`${model.title} — Василиса`} description={model.description}>
+  <div class="container breadcrumbs">
+    <a href="/">Главная</a> / <a href={`/${cat.slug}/`}>{cat.title}</a> / {model.title}
+  </div>
+
+  <section class="model">
+    <div class="container">
+      <div class="model-grid">
+        <div>
+          <div class="gallery-main">
+            {images[0]
+              ? <img id="galleryMain" src={images[0]} alt={model.title} />
+              : <div class="placeholder">Фото скоро</div>}
+          </div>
+          {images.length > 0 && (
+            <div class="gallery-thumbs">
+              {images.map((src, i) => (
+                <button class:list={[{ active: i === 0 }]} data-src={src} aria-label={`Фото ${i + 1}`}>
+                  <img src={src} alt={`${model.title} — вид ${i + 1}`} loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div class="model-info">
+          <span class="eyebrow">{cat.title}</span>
+          <h1>{model.title}</h1>
+          <p class="muted" style="font-size:14px">{model.dimensions}</p>
+
+          <div class="model-price">
+            {price}
+            <small>
+              {model.price > 0
+                ? 'Цена за указанные размеры. Другие размеры и детали — уточняйте у менеджера.'
+                : 'Пришлите фото и характеристики — рассчитаем стоимость.'}
+            </small>
+          </div>
+
+          <p class="model-desc">{model.description}</p>
+
+          <div class="model-actions">
+            <a class="btn btn-primary" href={site.phoneHref}>Позвонить</a>
+            <a class="btn btn-ghost" href={site.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-ghost" href={site.telegram} target="_blank" rel="noopener">Telegram</a>
+          </div>
+
+          <div class="specs">
+            <div class="spec"><span>Размеры</span><span>{model.dimensions}</span></div>
+            <div class="spec"><span>Материалы</span><span>{model.materials}</span></div>
+            <div class="spec"><span>Срок изготовления</span><span>20–25 рабочих дней</span></div>
+            <div class="spec"><span>Доставка</span><span>СПб и ЛО, рассчитывается отдельно</span></div>
+            <div class="spec"><span>Гарантия</span><span>2 года</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="related">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Похожие модели</span>
+            <h2>Смотрите также</h2>
+          </div>
+        </div>
+        <div class="product-grid">
+          {related.map((m) => <ProductCard model={m} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

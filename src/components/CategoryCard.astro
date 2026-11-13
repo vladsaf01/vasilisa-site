@@ -1,0 +1,20 @@
+---
+import type { Category } from '../data/catalog';
+
+interface Props {
+  category: Category;
+  wide?: boolean;
+}
+
+const { category, wide = false } = Astro.props;
+---
+
+<a class:list={['cat-card', { wide }]} href={`/${category.slug}/`}>
+  {category.image
+    ? <img src={category.image} alt={category.title} loading="lazy" />
+    : <div class="placeholder"></div>}
+  <div class="cat-body">
+    <h3>{category.title}</h3>
+    <span>{category.short}</span>
+  </div>
+</a>

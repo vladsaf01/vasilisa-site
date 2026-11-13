@@ -1,0 +1,29 @@
+---
+import { site } from '../data/settings';
+---
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a class="logo" href="/">
+      <img class="logo-mark" src="/img/logo-mark.png" alt="" width="32" height="34" />
+      <span>{site.name}</span>
+    </a>
+    <nav class="nav">
+      <a href="/#categories">Каталог</a>
+      <a href="/#popular">Модели</a>
+      <a href="/o-nas/">О нас</a>
+      <a href="/#steps">Как заказать</a>
+      <a href="/dostavka-i-kontakty/">Контакты</a>
+    </nav>
+    <a class="header-phone" href={site.phoneHref}>{site.phone}</a>
+    <button class="burger" id="burger" aria-label="Меню">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#categories">Каталог</a>
+    <a href="/#popular">Модели</a>
+    <a href="/o-nas/">О нас</a>
+    <a href="/#steps">Как заказать</a>
+    <a href="/dostavka-i-kontakty/">Контакты</a>
+    <a href={site.phoneHref} style="color:var(--accent)">{site.phone}</a>
+  </div>
+</header>

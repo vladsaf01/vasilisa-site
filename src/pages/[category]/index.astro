@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categories, getModelsByCategory } from '../../data/catalog';
+import { site } from '../../data/settings';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { category: c.slug } }));
+}
+
+const { category } = Astro.params;
+const cat = categories.find((c) => c.slug === category) ?? categories[0];
+const items = getModelsByCategory(cat.slug);
+---
+
+<Base title={`${cat.title} — Василиса`} description={cat.description}>
+  <div class="container breadcrumbs">
+    <a href="/">Главная</a> / {cat.title}
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Каталог</span>
+          <h1>{cat.title}</h1>
+        </div>
+        <p>{cat.description}</p>
+      </div>
+
+      <div class="product-grid">
+        {items.map((m) => <ProductCard model={m} />)}
+      </div>
+
+      <div style="margin-top:48px; padding-top:28px; border-top:1px solid var(--line); display:flex; gap:14px; flex-wrap:wrap; align-items:center">
+        <span class="muted" style="font-size:14px">Не нашли подходящую модель?</span>
+        <a class="btn btn-primary btn-sm" href={site.phoneHref}>Позвонить</a>
+        <a class="btn btn-ghost btn-sm" href={site.whatsapp} target="_blank" rel="noopener">Написать в WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>

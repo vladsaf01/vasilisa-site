@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+import CategoryCard from '../components/CategoryCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { categories, getFeatured } from '../data/catalog';
+import { site } from '../data/settings';
+
+const featured = getFeatured();
+---
+
+<Base title="Василиса — мебель для дома в Санкт-Петербурге">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <span class="eyebrow">Санкт-Петербург и область</span>
+        <h1>Мебель для вашего дома.<br /><em>Стиль и качество</em> по разумной цене.</h1>
+        <p class="hero-sub">Выбирайте готовые решения для кухни, спальни и всего дома. Своя сборка и монтаж, лучшее качество, гарантия.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#categories">Смотреть каталог</a>
+          <a class="btn btn-ghost" href={site.phoneHref}>Получить консультацию</a>
+        </div>
+        <div class="hero-note">Бесплатная консультация · Замер и доставка по СПб и ЛО</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">₽</div>
+          <h3>Доступные цены</h3>
+          <p>Без переплаты за шоурум и менеджеров</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">▦</div>
+          <h3>Большой выбор</h3>
+          <p>Готовые модели под разные задачи</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">◆</div>
+          <h3>Качественные материалы</h3>
+          <p>ЛДСП, МДФ и проверенная фурнитура</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">✆</div>
+          <h3>Помощь при заказе</h3>
+          <p>Подскажем по размерам и материалам</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Каталог</span>
+          <h2>Пять категорий мебели</h2>
+        </div>
+        <p>Готовые модели с понятными размерами и ценами. Не нашли нужное — позвоните, подберём.</p>
+      </div>
+
+      <div class="cat-grid">
+        {categories.map((c, i) => <CategoryCard category={c} wide={i === 0} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="popular" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Популярное</span>
+          <h2>Модели, которые выбирают</h2>
+        </div>
+        <a class="product-link" href="#contacts">Смотреть всё →</a>
+      </div>
+
+      <div class="product-grid">
+        {featured.map((m) => <ProductCard model={m} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="steps" style="background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Как оформить заказ</span>
+          <h2>Пять простых шагов</h2>
+        </div>
+        <p>Без онлайн-оплаты и корзины: помогаем выбрать и согласовываем всё лично.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Выбираете модель</h3><p>В каталоге или с нашей помощью</p></div>
+        <div class="step"><h3>Оставляете заявку</h3><p>Звонок, WhatsApp или Telegram</p></div>
+        <div class="step"><h3>Консультируем</h3><p>Уточняем размеры и материалы</p></div>
+        <div class="step"><h3>Согласовываем</h3><p>Цену, сроки и условия</p></div>
+        <div class="step"><h3>Изготавливаем и доставляем</h3><p>Сборка и монтаж по СПб и ЛО</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about">
+        <div class="about-media">
+          <img src="/img/shkaf-2.png" alt="Мебель Василиса" />
+        </div>
+        <div>
+          <span class="eyebrow">О нас</span>
+          <h2>Своя сборка и монтаж</h2>
+          <p>Мы делаем мебель для дома в Санкт-Петербурге: шкафы, гардеробные, кровати, тумбы и комоды. Работаем с ЛДСП и МДФ, подбираем проверенную фурнитуру.</p>
+          <p>Распил заказываем на проверенном производстве, а сборку и установку делаем сами — поэтому отвечаем за результат и не переплачиваем за посредников.</p>
+          <ul>
+            <li>Готовые модели с понятными размерами</li>
+            <li>Доставка и монтаж по СПб и Ленинградской области</li>
+            <li>Гарантия на изделия</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Отзывы</span>
+          <h2>Что говорят клиенты</h2>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review">
+          <p>«Заказывали шкаф с рабочей зоной. Помогли с размерами, собрали аккуратно, всё в срок».</p>
+          <div class="who">— Анна, Санкт-Петербург</div>
+        </div>
+        <div class="review">
+          <p>«Нужна была гардеробная в новостройку. Подсказали, как лучше спланировать, сделали за три недели».</p>
+          <div class="who">— Дмитрий, Мурино</div>
+        </div>
+        <div class="review-note">Здесь появятся реальные отзывы с фото после первых заказов. Не публикуем выдуманные.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contacts">
+    <div class="container cta-inner">
+      <div>
+        <span class="eyebrow">Свяжитесь с нами</span>
+        <h2>Поможем выбрать подходящую мебель</h2>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href={site.phoneHref}>Позвонить</a>
+        <a class="btn btn-ghost" href={site.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost" href={site.telegram} target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </div>
+  </section>
+</Base>

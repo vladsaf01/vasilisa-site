@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/settings';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Кухни, кровати, тумбы, комоды и шкафы на заказ в Санкт-Петербурге. Доступные цены, своя сборка и монтаж.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+
+    <div class="mobile-bar">
+      <a class="btn btn-primary" href={site.phoneHref}>Позвонить</a>
+      <a class="btn btn-ghost" href={site.whatsapp} target="_blank" rel="noopener">Написать</a>
+    </div>
+
+    <script src="/main.js" defer></script>
+  </body>
+</html>

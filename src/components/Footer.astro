@@ -1,0 +1,47 @@
+---
+import { site } from '../data/settings';
+import { categories } from '../data/catalog';
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo logo--footer" href="/" aria-label={site.name}>
+          <img
+            class="logo-lockup"
+            src="/img/logo-vasilisa.png"
+            alt="Василиса — мебель на заказ"
+            width="210"
+            height="134"
+          />
+        </a>
+        <p class="muted" style="font-size:13px; margin-top:14px; max-width:280px">
+          Мебель для дома в Санкт-Петербурге. Своя сборка и монтаж, лучшее качество.
+        </p>
+      </div>
+      <div>
+        <h3>Каталог</h3>
+        {categories.map((c) => <a href={`/${c.slug}/`}>{c.title}</a>)}
+      </div>
+      <div>
+        <h3>Информация</h3>
+        <a href="/o-nas/">О нас</a>
+        <a href="/#steps">Как заказать</a>
+        <a href="/dostavka-i-kontakty/">Доставка и оплата</a>
+        <a href="/politika/">Политика конфиденциальности</a>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <a href={site.phoneHref}>{site.phone}</a>
+        <a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+        <a href={site.telegram} target="_blank" rel="noopener">Telegram</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 {site.name}. {site.legal}.</span>
+      <span>{site.city}</span>
+    </div>
+  </div>
+</footer>

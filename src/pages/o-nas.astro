@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/settings';
+---
+
+<Base title="О нас и наши работы — Василиса" description="Мастерская «Василиса»: мебель для дома в Санкт-Петербурге. Своя сборка и монтаж, распил на проверенном производстве.">
+  <div class="container breadcrumbs"><a href="/">Главная</a> / О нас</div>
+
+  <section class="section">
+    <div class="container">
+      <div class="about">
+        <div class="about-media">
+          <img src="/img/shkaf-2.png" alt="Шкаф с рабочей зоной" />
+        </div>
+        <div>
+          <span class="eyebrow">О нас</span>
+          <h1>Своя сборка и монтаж</h1>
+          <p>Мы делаем мебель для дома в Санкт-Петербурге: шкафы, гардеробные, кровати, тумбы и комоды. Работаем с ЛДСП и МДФ, подбираем проверенную фурнитуру.</p>
+          <p>Распил заказываем на проверенном производстве, а сборку и установку делаем сами — поэтому отвечаем за результат и не переплачиваем за посредников.</p>
+          <ul>
+            <li>Готовые модели с понятными размерами</li>
+            <li>Доставка и монтаж по СПб и Ленинградской области</li>
+            <li>Гарантия на изделия</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Наши работы</span>
+          <h2>Примеры проектов</h2>
+        </div>
+        <p>Фотографии наших работ. Скоро добавим больше проектов и реальные отзывы.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-media"><img src="/img/shkaf-2.png" alt="Шкаф с рабочей зоной" loading="lazy" /></div>
+          <div class="product-body"><h3>Шкаф с рабочей зоной</h3><p class="product-meta">2800 × 2600 × 600 мм</p></div>
+        </div>
+        <div class="product-card">
+          <div class="product-media"><img src="/img/shkaf-1.png" alt="Шкаф-купе" loading="lazy" /></div>
+          <div class="product-body"><h3>Шкаф-купе</h3><p class="product-meta">2800 × 2600 × 600 мм</p></div>
+        </div>
+        <div class="product-card">
+          <div class="product-media"><img src="/img/garderob.png" alt="Гардеробная" loading="lazy" /></div>
+          <div class="product-body"><h3>Гардеробная</h3><p class="product-meta">~2 × 3 м</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-inner">
+      <div>
+        <span class="eyebrow">Свяжитесь с нами</span>
+        <h2>Расскажите, что нужно — подберём решение</h2>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href={site.phoneHref}>Позвонить</a>
+        <a class="btn btn-ghost" href={site.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost" href={site.telegram} target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </div>
+  </section>
+</Base>

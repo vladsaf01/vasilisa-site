@@ -1,0 +1,28 @@
+---
+import type { Model } from '../data/catalog';
+import { getCategory } from '../data/catalog';
+
+interface Props {
+  model: Model;
+}
+
+const { model } = Astro.props;
+const category = getCategory(model.category);
+const href = `/${model.category}/${model.slug}/`;
+const price = model.price > 0 ? `${model.price.toLocaleString('ru-RU')} ₽` : 'Цена по запросу';
+---
+
+<article class="product-card">
+  <a class="product-media" href={href}>
+    {model.images[0]
+      ? <img src={model.images[0]} alt={model.title} loading="lazy" />
+      : <div class="placeholder">Фото скоро</div>}
+  </a>
+  <div class="product-body">
+    <span class="product-cat">{category.title}</span>
+    <h3>{model.title}</h3>
+    <p class="product-meta">{model.dimensions}</p>
+    <div class="product-price">{price} {model.price > 0 && <small>за указанные размеры</small>}</div>
+    <a class="product-link" href={href}>Подробнее →</a>
+  </div>
+</article>

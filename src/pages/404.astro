@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/settings';
+---
+
+<Base title="Страница не найдена — Василиса">
+  <section class="section" style="min-height:60vh; display:flex; align-items:center">
+    <div class="container" style="text-align:center">
+      <span class="eyebrow">404</span>
+      <h1>Страница не найдена</h1>
+      <p class="muted" style="margin:18px 0 28px">Возможно, страница переехала или удалена.</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-primary" href="/">На главную</a>
+        <a class="btn btn-ghost" href={site.phoneHref}>Позвонить</a>
+      </div>
+    </div>
+  </section>
+</Base>
