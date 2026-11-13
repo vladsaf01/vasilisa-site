@@ -3,6 +3,13 @@
 **Дата:** 08.11.2026
 **Статус:** этап 1 — каркас и маршруты. CMS/SEO/аналитика — следующие этапы.
 
+## Живая версия
+
+- Демо сайта (GitHub Pages): https://vladsaf01.github.io/
+- Исходники сайта: https://github.com/vladsaf01/vasilisa-site
+- Конструктор мебели (демо): https://vladsaf01.github.io/vasilisa-configurator/
+- Исходники конструктора: https://github.com/vladsaf01/vasilisa-configurator
+
 ---
 
 ## Команды
